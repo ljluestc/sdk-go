@@ -2,6 +2,7 @@ package compatibility
 
 import (
 	"context"
+	"errors"
 	"reflect"
 
 	"go.temporal.io/sdk/worker"

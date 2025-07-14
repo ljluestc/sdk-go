@@ -12,7 +12,7 @@ import (
 
 // Test workflow that uses the adapter
 func testWorkflow(ctx workflow.Context, name string, args ...interface{}) (string, error) {
-	return WorkflowAdapter(ctx, "add-greeting-param", workflow.DefaultVersion, 1,
+	return WorkflowAdapter(ctx, "add-greeting-param",
 		func() (string, error) {
 			return oldWorkflow(ctx, name)
 		},
@@ -90,7 +90,7 @@ func TestWorkflowAdapterSimple(t *testing.T) {
 
 // Test workflow that uses WorkflowAdapter
 func testWorkflowWithAdapter(ctx workflow.Context, name string, args ...interface{}) (string, error) {
-	return WorkflowAdapter(ctx, "add-greeting-param", workflow.DefaultVersion, 1,
+	return WorkflowAdapter(ctx, "add-greeting-param",
 		func() (string, error) {
 			return oldWorkflow(ctx, name)
 		},
@@ -149,7 +149,7 @@ func TestWorkflowAdapter(t *testing.T) {
 	env = testSuite.NewTestWorkflowEnvironment()
 
 	testErrorWorkflow := func(ctx workflow.Context, name string, args ...interface{}) (string, error) {
-		return WorkflowAdapter(ctx, "add-greeting-param", workflow.DefaultVersion, 1,
+		return WorkflowAdapter(ctx, "add-greeting-param",
 			func() (string, error) {
 				return oldWorkflowWithError(ctx, name)
 			},
@@ -183,8 +183,6 @@ func TestWorkflowAdapterFunc(t *testing.T) {
 	// Create an adapter workflow
 	adaptedWorkflow := WorkflowAdapterFunc(
 		"add-greeting-param",
-		workflow.DefaultVersion,
-		1,
 		oldWorkflow,
 		newWorkflow,
 	)
@@ -229,7 +227,7 @@ func TestWorkflowAdapterFunc(t *testing.T) {
 
 	// Test error handling
 	testErrorWorkflow := func(ctx workflow.Context, name string, args ...interface{}) (string, error) {
-		return WorkflowAdapter(ctx, "add-greeting-param", workflow.DefaultVersion, 1,
+		return WorkflowAdapter(ctx, "add-greeting-param",
 			func() (string, error) {
 				return oldWorkflowWithError(ctx, name)
 			},
@@ -264,8 +262,6 @@ func TestWorkflowAdapterFuncAlt(t *testing.T) {
 	// Create an adapter workflow
 	adaptedWorkflow := WorkflowAdapterFunc(
 		"add-greeting-param",
-		workflow.DefaultVersion,
-		1,
 		oldWorkflow,
 		newWorkflow,
 	)
@@ -317,8 +313,6 @@ func TestAdditionalWorkflowAdapterFunc(t *testing.T) {
 	// Create an adapter workflow
 	adaptedWorkflow := WorkflowAdapterFunc(
 		"add-greeting-param",
-		workflow.DefaultVersion,
-		1,
 		oldWorkflow,
 		newWorkflow,
 	)
