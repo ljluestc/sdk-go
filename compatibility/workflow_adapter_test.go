@@ -210,8 +210,6 @@ func TestWorkflowAdapterFunc(t *testing.T) {
 			// Force GetVersion to return 1
 			env.OnWorkflowGetVersion(
 				"add-greeting-param",
-				workflow.DefaultVersion,
-				1,
 				1,
 			)
 		})
@@ -289,8 +287,6 @@ func TestWorkflowAdapterFuncAlt(t *testing.T) {
 			// Simulate workflow.GetVersion returning 1
 			env.OnWorkflowGetVersion(
 				"add-greeting-param",
-				workflow.DefaultVersion,
-				1,
 				1,
 			)
 		})

@@ -1,5 +1,8 @@
 package workflow
+package workflow
 
+// DefaultVersion is the version returned by GetVersion for the very first workflow task.
+const DefaultVersion Version = -1
 import (
 	"cmp"
 	"errors"

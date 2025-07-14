@@ -254,15 +254,24 @@ func ActivityAdapter[T any](
 	newFn func() (T, error),
 ) (T, error) {
 	// Get version from context
-	var version workflow.Version = workflow.DefaultVersion
+	useNewVersion := false
 	value := ctx.Value(ActivityVersionKey{})
+
 	if value != nil {
-		if v, ok := value.(workflow.Version); ok {
-			version = v
+		// Handle different version types
+		switch v := value.(type) {
+		case workflow.Version:
+			useNewVersion = v != workflow.DefaultVersion
+		case int:
+			useNewVersion = v > 0
+		case map[string]int:
+			if version, ok := v[changeID]; ok {
+				useNewVersion = version > 0
+			}
 		}
 	}
 
-	if version == workflow.DefaultVersion {
+	if !useNewVersion {
 		// Use old function signature
 		return oldFn()
 	}
