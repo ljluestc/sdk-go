@@ -1322,3 +1322,7 @@ func (e *TestWorkflowEnvironment) AssertNexusOperationNotCalled(t mock.TestingT,
 func (e *TestWorkflowEnvironment) AssertNexusOperationNumberOfCalls(t mock.TestingT, service string, expectedCalls int) bool {
 	return e.nexusMock.AssertNumberOfCalls(t, service, expectedCalls)
 }
+
+func (e *TestWorkflowEnvironment) OnWorkflowGetVersion(s string, version int, i int, i2 int) {
+
+}
