@@ -1,5 +1,4 @@
 package compatibility
-package compatibility
 
 import (
 	"context"
